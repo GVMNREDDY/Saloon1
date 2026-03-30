@@ -1,0 +1,30 @@
+{
+  "navbar": {
+    "services": "Services",
+    "book": "Book",
+    "login": "Login",
+    "logout": "Logout",
+    "dashboard": "Dashboard"
+  },
+  "home": {
+    "title": "Elevate Your Style",
+    "subtitle": "Experience the ultimate care and attention. Book an appointment today and discover our world-class salon services crafted just for you.",
+    "bookNow": "Book Now",
+    "signIn": "Sign In"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Discover our curated menu of premium treatments designed to elevate your everyday well-being and style.",
+    "bookNow": "Book Now"
+  },
+  "booking": {
+    "modalTitle": "Book Appointment",
+    "preferredDate": "Preferred Date",
+    "timeSlot": "Time Slot",
+    "stylist": "Preferred Stylist (Optional)",
+    "coupon": "Coupon Code (Optional)",
+    "confirm": "Confirm Booking",
+    "cancel": "Cancel",
+    "success": "Booking successful! View details in dashboard."
+  }
+}

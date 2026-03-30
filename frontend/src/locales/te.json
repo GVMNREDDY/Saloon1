@@ -1,0 +1,30 @@
+{
+  "navbar": {
+    "services": "సేవలు (Services)",
+    "book": "బుక్ చేయండి (Book)",
+    "login": "లాగిన్ (Login)",
+    "logout": "లాగౌట్ (Logout)",
+    "dashboard": "డాష్‌బోర్డ్ (Dashboard)"
+  },
+  "home": {
+    "title": "మీ శైలిని పెంచుకోండి (Elevate Your Style)",
+    "subtitle": "అంత్య సంరక్షణను అనుభవించండి. ఈరోజే బుక్ చేయండి మరియు మీ కోసమే ప్రత్యేకంగా రూపొందించబడిన మా ప్రపంచ స్థాయి సెలూన్ సేవలను కనుగొనండి.",
+    "bookNow": "ఇప్పుడే బుక్ చేయండి (Book Now)",
+    "signIn": "సైన్ ఇన్ (Sign In)"
+  },
+  "services": {
+    "title": "మా సేవలు (Our Services)",
+    "subtitle": "మీ శైలిని మెరుగుపరచడానికి ప్రత్యేకంగా రూపొందించిన మా ప్రీమియం చికిత్సల జాబితాను చూడండి.",
+    "bookNow": "ఇప్పుడే బుక్ చేయండి (Book Now)"
+  },
+  "booking": {
+    "modalTitle": "అపాయింట్‌మెంట్ బుక్ చేయండి (Book Appointment)",
+    "preferredDate": "తేదీ (Preferred Date)",
+    "timeSlot": "సమయం (Time Slot)",
+    "stylist": "స్టైలిస్ట్ (Stylist - Optional)",
+    "coupon": "కూపన్ (Coupon - Optional)",
+    "confirm": "నిర్ధారించండి (Confirm Booking)",
+    "cancel": "రద్దు చేయి (Cancel)",
+    "success": "బుకింగ్ విజయవంతమైంది! వివరాలను డాష్‌బోర్డ్‌లో చూడండి."
+  }
+}

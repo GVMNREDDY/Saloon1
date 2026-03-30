@@ -1,41 +1,71 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Scissors, Sun, Moon, LogIn } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-interface NavbarProps {
-  darkMode: boolean;
-  setDarkMode: (val: boolean) => void;
-}
+const Navbar = () => {
+    const { t, i18n } = useTranslation();
+    const token = localStorage.getItem('token');
+    const navigate = useNavigate();
 
-const Navbar = ({ darkMode, setDarkMode }: NavbarProps) => {
-  return (
-    <nav className="border-b border-gray-200 dark:border-gray-800 bg-background dark:bg-background-dark/95 sticky top-0 backdrop-blur-md z-50">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-2 text-accent font-bold text-2xl tracking-tighter">
-          <Scissors className="w-8 h-8" />
-          <span>LuxeSalon</span>
-        </Link>
-        <div className="flex items-center gap-6">
-          <Link to="/services" className="font-medium hover:text-accent transition-colors">Services</Link>
-          <Link to="/book" className="font-medium hover:text-accent transition-colors">Book</Link>
-          
-          <div className="h-6 w-px bg-gray-300 dark:bg-gray-700"></div>
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
+    };
 
-          <button 
-            onClick={() => setDarkMode(!darkMode)}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-          >
-            {darkMode ? <Sun className="w-5 h-5 text-accent" /> : <Moon className="w-5 h-5 text-accent" />}
-          </button>
-          
-          <Link to="/login" className="flex items-center gap-2 bg-accent/10 text-accent font-medium py-2 px-4 rounded-full hover:bg-accent/20 transition-colors">
-            <LogIn className="w-4 h-4" />
-            <span>Login</span>
-          </Link>
-        </div>
-      </div>
-    </nav>
-  );
+    const toggleLang = () => {
+        i18n.changeLanguage(i18n.language === 'en' ? 'te' : 'en');
+    };
+
+    return (
+        <nav className="p-4 bg-background dark:bg-background-dark border-b border-gray-200 dark:border-gray-800 flex justify-between items-center transition-colors shadow-sm relative z-40">
+            <Link to="/" className="text-2xl font-bold tracking-tight text-accent flex items-center gap-2">
+                <span className="text-3xl">✨</span> Saloon
+            </Link>
+            
+            <div className="flex gap-4 md:gap-5 items-center flex-wrap justify-end">
+                <Link to="/about" className="font-semibold text-gray-700 dark:text-gray-300 hover:text-accent transition-colors hidden lg:block">
+                    {t('navbar.about') || 'About Us'}
+                </Link>
+                <Link to="/gallery" className="font-semibold text-gray-700 dark:text-gray-300 hover:text-accent transition-colors hidden lg:block">
+                    {t('navbar.gallery') || 'Gallery'}
+                </Link>
+                <Link to="/offers" className="font-semibold text-gray-700 dark:text-gray-300 hover:text-accent transition-colors hidden xl:block">
+                    Offers
+                </Link>
+                <Link to="/blog" className="font-semibold text-gray-700 dark:text-gray-300 hover:text-accent transition-colors hidden xl:block">
+                    Blog
+                </Link>
+                <Link to="/pricing" className="font-semibold text-gray-700 dark:text-gray-300 hover:text-accent transition-colors hidden md:block">
+                    Pricing
+                </Link>
+                <Link to="/contact" className="font-semibold text-gray-700 dark:text-gray-300 hover:text-accent transition-colors hidden md:block">
+                    Contact Us
+                </Link>
+                <Link to="/services" className="font-semibold text-gray-700 dark:text-gray-300 hover:text-accent transition-colors">
+                    {t('navbar.services')}
+                </Link>
+
+                <button onClick={toggleLang} className="text-xs font-bold border border-gray-400 px-2 py-1 rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors hidden md:block">
+                    {i18n.language === 'en' ? 'తెలుగు' : 'English'}
+                </button>
+
+                {token ? (
+                    <>
+                        <Link to="/dashboard" className="font-semibold text-gray-700 dark:text-gray-300 hover:text-accent transition-colors">
+                            {t('navbar.dashboard')}
+                        </Link>
+                        <button onClick={handleLogout} className="font-semibold text-red-500 hover:text-red-600 transition-colors">
+                            {t('navbar.logout')}
+                        </button>
+                    </>
+                ) : (
+                    <Link to="/login" className="bg-accent text-background-dark px-4 py-2 md:px-5 rounded-full font-bold hover:bg-opacity-90 shadow-sm transition-all shadow-accent/20">
+                        {t('navbar.login')}
+                    </Link>
+                )}
+            </div>
+        </nav>
+    );
 };
 
 export default Navbar;

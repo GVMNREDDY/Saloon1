@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Clock } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import BookingModal from './BookingModal';
 
 interface ServiceCardProps {
     id: number;
@@ -11,7 +13,9 @@ interface ServiceCardProps {
     category: string;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, price, duration, imageUrl, category }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ id, name, description, price, duration, imageUrl, category }) => {
+    const { t } = useTranslation();
+    const [isBookingOpen, setIsBookingOpen] = useState(false);
     return (
         <div className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 transition-all hover:-translate-y-1 hover:shadow-xl group">
             <div className="h-48 bg-gray-200 dark:bg-gray-800 relative overflow-hidden">
@@ -35,11 +39,15 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, price, dur
                         <Clock className="w-4 h-4 mr-2" />
                         <span>{duration} min</span>
                     </div>
-                    <button className="text-background-dark dark:text-background-dark bg-white dark:bg-gray-200 font-semibold py-2 px-6 rounded-full border-2 border-transparent hover:border-accent hover:bg-accent hover:text-background-dark transition-all text-sm shadow-sm">
-                        Book Now
+                    <button 
+                        onClick={() => setIsBookingOpen(true)}
+                        className="text-background-dark dark:text-background-dark bg-white dark:bg-gray-200 font-semibold py-2 px-6 rounded-full border-2 border-transparent hover:border-accent hover:bg-accent hover:text-background-dark transition-all text-sm shadow-sm"
+                    >
+                        {t('services.bookNow')}
                     </button>
                 </div>
             </div>
+            <BookingModal serviceId={id} isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
         </div>
     );
 };
