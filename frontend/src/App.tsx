@@ -30,9 +30,11 @@ const Home = () => {
           <Link to="/services" className="bg-accent text-background-dark font-semibold py-3 px-8 rounded-full hover:bg-opacity-90 transition-all shadow-lg hover:shadow-accent/30">
             Book Now
           </Link>
-          <Link to="/login" className="border-2 border-accent text-accent font-semibold py-3 px-8 rounded-full hover:bg-accent hover:text-background-dark transition-all">
-            Sign In
-          </Link>
+          {!localStorage.getItem('token') && (
+            <Link to="/login" className="border-2 border-accent text-accent font-semibold py-3 px-8 rounded-full hover:bg-accent hover:text-background-dark transition-all">
+              Sign In
+            </Link>
+          )}
         </div>
       </div>
 

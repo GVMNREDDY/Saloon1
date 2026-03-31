@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Clock } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import BookingModal from './BookingModal';
 
@@ -15,6 +16,7 @@ interface ServiceCardProps {
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ id, name, description, price, duration, imageUrl, category }) => {
     const { t } = useTranslation();
+    const navigate = useNavigate();
     const [isBookingOpen, setIsBookingOpen] = useState(false);
     return (
         <div className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 transition-all hover:-translate-y-1 hover:shadow-xl group">
@@ -40,7 +42,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ id, name, description, price,
                         <span>{duration} min</span>
                     </div>
                     <button 
-                        onClick={() => setIsBookingOpen(true)}
+                        onClick={() => {
+                            if (!localStorage.getItem('token')) {
+                                navigate('/login');
+                            } else {
+                                setIsBookingOpen(true);
+                            }
+                        }}
                         className="text-background-dark dark:text-background-dark bg-white dark:bg-gray-200 font-semibold py-2 px-6 rounded-full border-2 border-transparent hover:border-accent hover:bg-accent hover:text-background-dark transition-all text-sm shadow-sm"
                     >
                         {t('services.bookNow')}
