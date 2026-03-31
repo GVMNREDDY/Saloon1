@@ -14,18 +14,58 @@ import Blog from './pages/Blog';
 import './App.scss';
 
 const Home = () => {
+  useEffect(() => {
+    const revealItems = document.querySelectorAll<HTMLElement>('[data-reveal]');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('isVisible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18 }
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+
+    return () => observer.disconnect();
+  }, []);
+
   const reviews = [
     { name: "Emily Clark", rating: 5, text: "Absolutely wonderful! The stylists here are true artists. My hair color has never looked so vibrant and healthy.", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150" },
     { name: "Jessica R.", rating: 5, text: "The deep tissue massage here completely removed my highly stressed knots. The spa vibe is incredibly relaxing.", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150" },
     { name: "Aaranya T.", rating: 4, text: "Got my bridal makeup done here and everyone complimented me all day! Highly recommend.", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" }
   ];
 
+  const categories = [
+    { title: 'Hair Recovery', text: 'Repairing rituals for dry and damaged strands.' },
+    { title: 'Curly & Definition', text: 'Hydrating care for healthy and bouncy curls.' },
+    { title: 'Scalp Care', text: 'Deep cleanse and nourish for long-term hair health.' },
+    { title: 'Color Protection', text: 'Shine-retaining formulas for treated hair.' }
+  ];
+
+  const featuredKits = [
+    { name: 'Brazilian Curly Kit', price: '$100', tag: 'Top Seller' },
+    { name: 'Versaty Pro Recovery', price: '$129', tag: 'Salon Pick' },
+    { name: 'Argan Biorestore Set', price: '$120', tag: 'Best Value' }
+  ];
+
+  const highlights = [
+    { value: '8+', label: 'Years of trusted service' },
+    { value: '15k+', label: 'Happy customer sessions' },
+    { value: '30+', label: 'Premium treatments available' },
+    { value: '4.9', label: 'Average customer rating' }
+  ];
+
   return (
     <>
-      <div className="homeHero">
+      <section className="homeHero revealItem" data-reveal>
+        <span className="heroBadge">Luxury care, everyday confidence</span>
         <h1 className="homeHeroTitle">Elevate Your Style</h1>
         <p className="homeHeroText">
-          Experience the ultimate care and attention. Book an appointment today and discover our world-class salon services crafted just for you.
+          Premium salon and spa experiences inspired by modern beauty collections. Book your appointment and glow with confidence.
         </p>
         <div className="homeHeroActions">
           <Link to="/services" className="homeHeroPrimaryButton">
@@ -37,9 +77,54 @@ const Home = () => {
             </Link>
           )}
         </div>
-      </div>
+      </section>
 
-      <div className="reviewsSection">
+      <section className="statsSection revealItem" data-reveal>
+        <div className="statsGrid">
+          {highlights.map((item) => (
+            <div key={item.label} className="statCard">
+              <h3>{item.value}</h3>
+              <p>{item.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="collectionSection revealItem" data-reveal>
+        <div className="sectionHeading">
+          <h2>Shop by Treatment Collections</h2>
+          <p>Explore curated categories designed for every hair and skin need.</p>
+        </div>
+        <div className="collectionGrid">
+          {categories.map((category) => (
+            <article key={category.title} className="collectionCard">
+              <h3>{category.title}</h3>
+              <p>{category.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="kitsSection revealItem" data-reveal>
+        <div className="sectionHeading">
+          <h2>Featured Home-Care Kits</h2>
+          <p>Bring salon-grade care into your daily routine with professional kits.</p>
+        </div>
+        <div className="kitsGrid">
+          {featuredKits.map((kit) => (
+            <article key={kit.name} className="kitCard">
+              <span className="kitTag">{kit.tag}</span>
+              <h3>{kit.name}</h3>
+              <p className="kitPrice">{kit.price}</p>
+              <Link to="/services" className="kitButton">
+                Explore
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="reviewsSection revealItem" data-reveal>
         <h2 className="reviewsTitle">What Our Customers Say</h2>
         <div className="reviewsGrid">
           {reviews.map((review, i) => (
@@ -53,10 +138,79 @@ const Home = () => {
             </div>
           ))}
         </div>
-      </div>
+      </section>
+
+      <section className="insightsSection revealItem" data-reveal>
+        <div className="sectionHeading">
+          <h2>Latest Beauty Insights</h2>
+          <p>Weekly salon tips on smoothness, hydration, and long-lasting shine.</p>
+        </div>
+        <div className="insightsGrid">
+          <article className="insightCard">
+            <h3>Keratin Rituals for Frizz Control</h3>
+            <p>Learn how to keep your hair sleek and manageable after treatment.</p>
+          </article>
+          <article className="insightCard">
+            <h3>Why Argan Oil Works Wonders</h3>
+            <p>Discover the benefits of argan-based nourishment for dry hair.</p>
+          </article>
+          <article className="insightCard">
+            <h3>Simple Salon Care at Home</h3>
+            <p>Small weekly routines that keep your hair healthy between visits.</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="newsletterSection revealItem" data-reveal>
+        <div className="newsletterCard">
+          <h2>Subscribe for Offers & Beauty Tips</h2>
+          <p>Get exclusive discounts and updates on our newest treatments.</p>
+          <form className="newsletterForm" onSubmit={(event) => event.preventDefault()}>
+            <input type="email" placeholder="Your email address" required />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </section>
     </>
   );
 };
+
+const Footer = () => (
+  <footer className="siteFooter">
+    <div className="siteFooterGrid">
+      <div>
+        <h3>Saloon</h3>
+        <p>
+          Premium salon and spa services with modern care rituals for hair, skin, and wellness.
+        </p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <div className="footerLinks">
+          <Link to="/">Home</Link>
+          <Link to="/services">Services</Link>
+          <Link to="/offers">Offers</Link>
+          <Link to="/blog">Blog</Link>
+        </div>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>support@saloon.com</p>
+        <p>+1 (555) 123-4567</p>
+        <p>Mon-Sat: 9:00 AM - 8:00 PM</p>
+      </div>
+      <div>
+        <h4>Follow Us</h4>
+        <div className="footerLinks">
+          <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a>
+          <a href="https://youtube.com" target="_blank" rel="noreferrer">YouTube</a>
+        </div>
+      </div>
+    </div>
+    <p className="footerBottom">Copyright {new Date().getFullYear()} Saloon. All rights reserved.</p>
+  </footer>
+);
 
 function App() {
   const [darkMode] = useState(true);
@@ -90,6 +244,7 @@ function App() {
             </Routes>
           </React.Suspense>
         </main>
+        <Footer />
         
         {/* Floating WhatsApp Button */}
         <a href="https://wa.me/15551234567" target="_blank" rel="noopener noreferrer" className="whatsAppButton">

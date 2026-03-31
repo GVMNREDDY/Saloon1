@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Clock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import BookingModal from './BookingModal';
 import './ServiceCard.scss';
 
@@ -16,7 +15,6 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ id, name, description, price, duration, imageUrl, category }) => {
-    const { t } = useTranslation();
     const navigate = useNavigate();
     const [isBookingOpen, setIsBookingOpen] = useState(false);
     return (
