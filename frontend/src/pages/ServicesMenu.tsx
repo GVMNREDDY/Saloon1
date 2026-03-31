@@ -41,12 +41,12 @@ const ServicesMenu = () => {
 
     const mockServices = () => {
         setServices([
-            { id: 1, name: "Hair Cut", description: "Precision cut and styling.", price: 45, durationMinutes: 30, category: { name: "Hair" }, imageUrl: "http://localhost:5173/modern_salon_station.png" },
-            { id: 2, name: "Styling", description: "Professional blow-dry and styling.", price: 35, durationMinutes: 45, category: { name: "Hair" } },
-            { id: 3, name: "Facials", description: "Deep cleansing facial treatment.", price: 80, durationMinutes: 60, category: { name: "Skin" } },
-            { id: 4, name: "Cleanup", description: "Quick skin cleanup and glow.", price: 40, durationMinutes: 30, category: { name: "Skin" } },
-            { id: 5, name: "Bridal Makeup", description: "Complete bridal makeup package.", price: 250, durationMinutes: 180, category: { name: "Makeup" } },
-            { id: 6, name: "Deep Tissue Massage", description: "Relieve tension and soothe muscles.", price: 120, durationMinutes: 60, category: { name: "Spa & massage" }, imageUrl: "http://localhost:5173/luxury_spa_room.png" }
+            { id: 1, name: "Hair Cut", description: "Precision cut and styling.", price: 45, durationMinutes: 30, category: { name: "Hair" }, imageUrl: "../g2.png" },
+            { id: 2, name: "Styling", description: "Professional blow-dry and styling.", price: 35, durationMinutes: 45, category: { name: "Hair" }, imageUrl: "../g1.png" },
+            { id: 3, name: "Facials", description: "Deep cleansing facial treatment.", price: 80, durationMinutes: 60, category: { name: "Skin" }, imageUrl: "../g5.jpg" },
+            { id: 4, name: "Cleanup", description: "Quick skin cleanup and glow.", price: 40, durationMinutes: 30, category: { name: "Skin" }, imageUrl: "../g6.jpg" },
+            { id: 5, name: "Bridal Makeup", description: "Complete bridal makeup package.", price: 250, durationMinutes: 180, category: { name: "Makeup" }, imageUrl: "../g8.png" },
+            { id: 6, name: "Deep Tissue Massage", description: "Relieve tension and soothe muscles.", price: 120, durationMinutes: 60, category: { name: "Spa & massage" }, imageUrl: "../g9.png" }
         ]);
     };
 

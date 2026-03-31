@@ -52,7 +52,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ id, name, description, price,
                         }}
                         className="serviceCardButton"
                     >
-                        {t('services.bookNow')}
+                        {'Book Now'}
                     </button>
                 </div>
             </div>

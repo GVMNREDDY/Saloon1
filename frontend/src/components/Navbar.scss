@@ -40,6 +40,24 @@ body.dark .navbar {
   justify-content: flex-end;
 }
 
+.navbarMenuButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: transparent;
+  color: #1f2937;
+  cursor: pointer;
+}
+
+body.dark .navbarMenuButton {
+  border-color: #3f3f46;
+  color: #f3f4f6;
+}
+
 .navbarLink {
   font-weight: 600;
   color: #4b5563;
@@ -136,5 +154,49 @@ body.dark .navbarLangButton:hover {
 
 .navbarLogoutButton:hover {
   color: #dc2626;
+}
+
+@media (max-width: 767px) {
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .navbarLinks {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  body.dark .navbarLinks {
+    border-top-color: #2f2f2f;
+  }
+
+  .navbarLinksOpen {
+    display: flex;
+  }
+
+  .navbarLink,
+  .navbarLoginButton,
+  .navbarLangButton,
+  .navbarLogoutButton {
+    width: 100%;
+    text-align: left;
+  }
+
+  .navbarHideMd,
+  .navbarHideLg,
+  .navbarHideXl {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbarMenuButton {
+    display: none;
+  }
 }
 

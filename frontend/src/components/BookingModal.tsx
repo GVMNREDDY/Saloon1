@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { X } from 'lucide-react';
+import { createPortal } from 'react-dom';
 import './BookingModal.scss';
 
 interface BookingModalProps {
@@ -49,9 +50,14 @@ const BookingModal: React.FC<BookingModalProps> = ({ serviceId, isOpen, onClose 
 
     if (!isOpen) return null;
 
-    return (
-        <div className="bookingModalOverlay">
-            <div className="bookingModal">
+    return createPortal(
+        <div className="bookingModalOverlay" onClick={onClose} role="presentation">
+            <div
+                className="bookingModal"
+                onClick={(event) => event.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+            >
                 <button onClick={onClose} className="bookingModalCloseButton" type="button">
                     <X size={22} />
                 </button>
@@ -110,7 +116,8 @@ const BookingModal: React.FC<BookingModalProps> = ({ serviceId, isOpen, onClose 
                     </button>
                 </form>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 };
 
