@@ -1,10 +1,7 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { ShieldCheck, Heart, Star } from 'lucide-react';
+import './About.scss';
 
 const About = () => {
-    const { t } = useTranslation();
-    
     const team = [
         { name: "Sarah Jenkins", role: "Master Hair Colorist", image: "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&q=80&w=400", bio: "10+ years experience specializing in balayage and vibrant color correction." },
         { name: "David Chen", role: "Senior Stylist", image: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&q=80&w=400", bio: "Award-winning stylist known for precision styling trends." },
@@ -12,48 +9,50 @@ const About = () => {
     ];
 
     return (
-        <div className="bg-white dark:bg-background-dark py-16 px-4 min-h-screen">
-            <div className="max-w-7xl mx-auto">
+        <div className="aboutPage">
+            <div className="aboutContainer">
                 {/* Story Section */}
-                <div className="grid md:grid-cols-2 gap-12 items-center mb-24">
-                    <div>
-                        <h1 className="text-4xl md:text-5xl font-extrabold mb-6 dark:text-white">Our Story & Vision</h1>
-                        <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                <div className="aboutStoryGrid">
+                    <div className="aboutStoryText">
+                        <h1 className="aboutStoryTitle">Our Story & Vision</h1>
+                        <p className="aboutStoryLead">
                             Founded on the belief that beauty is an intricate blend of art and personal expression, our salon has been transforming looks and lifting spirits since its inception. 
                         </p>
-                        <ul className="space-y-4">
-                            <li className="flex items-center text-gray-700 dark:text-gray-300">
-                                <ShieldCheck className="w-6 h-6 text-accent mr-3" /> State-of-the-art Hygiene & Safety
+                        <ul className="aboutHighlights">
+                            <li className="aboutHighlightItem">
+                                <ShieldCheck className="aboutHighlightIcon" /> State-of-the-art Hygiene & Safety
                             </li>
-                            <li className="flex items-center text-gray-700 dark:text-gray-300">
-                                <Heart className="w-6 h-6 text-accent mr-3" /> Cruelty-Free & Sustainable Products
+                            <li className="aboutHighlightItem">
+                                <Heart className="aboutHighlightIcon" /> Cruelty-Free & Sustainable Products
                             </li>
-                            <li className="flex items-center text-gray-700 dark:text-gray-300">
-                                <Star className="w-6 h-6 text-accent mr-3" /> 5-Star Unmatched Expertise
+                            <li className="aboutHighlightItem">
+                                <Star className="aboutHighlightIcon" /> 5-Star Unmatched Expertise
                             </li>
                         </ul>
                     </div>
-                    <div className="rounded-2xl overflow-hidden shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=800" alt="Salon Interior" className="w-full h-full object-cover" />
+                    <div className="aboutStoryImageWrap">
+                        <img
+                          src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=800"
+                          alt="Salon Interior"
+                          className="aboutStoryImage"
+                        />
                     </div>
                 </div>
 
                 {/* Team Section */}
-                <h2 className="text-4xl font-extrabold text-center mb-12 dark:text-white">Meet Our Experts</h2>
-                <div className="grid md:grid-cols-3 gap-8">
+                <h2 className="aboutTeamTitle">Meet Our Experts</h2>
+                <div className="aboutTeamGrid">
                     {team.map((stylist, i) => (
-                        <div key={i} className="bg-gray-50 dark:bg-gray-900 rounded-3xl overflow-hidden shadow-lg group">
-                            <div className="h-64 overflow-hidden relative">
-                                <img src={stylist.image} alt={stylist.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                                    <div>
-                                        <h3 className="text-2xl font-bold text-white">{stylist.name}</h3>
-                                        <p className="text-accent font-semibold">{stylist.role}</p>
-                                    </div>
+                        <div key={i} className="aboutExpertCard">
+                            <div className="aboutExpertImageWrap">
+                                <img src={stylist.image} alt={stylist.name} className="aboutExpertImage" />
+                                <div className="aboutExpertOverlay">
+                                    <h3 className="aboutExpertName">{stylist.name}</h3>
+                                    <p className="aboutExpertRole">{stylist.role}</p>
                                 </div>
                             </div>
-                            <div className="p-6">
-                                <p className="text-gray-600 dark:text-gray-400">{stylist.bio}</p>
+                            <div className="aboutExpertBio">
+                                <p>{stylist.bio}</p>
                             </div>
                         </div>
                     ))}

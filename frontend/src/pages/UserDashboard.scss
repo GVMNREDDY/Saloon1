@@ -1,0 +1,259 @@
+.dashboardPage {
+  padding: 48px 16px 64px 16px;
+  min-height: calc(100vh - 72px);
+}
+
+.dashboardHeader {
+  max-width: 960px;
+  margin: 0 auto 36px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .dashboardHeader {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+}
+
+.dashboardTitle {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--text);
+}
+
+body.dark .dashboardTitle {
+  color: #ffffff;
+}
+
+.loyaltyCard {
+  border: 1px solid rgba(158, 216, 60, 0.8);
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(158, 216, 60, 0.12);
+}
+
+.loyaltyIconWrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 9999px;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loyaltyIcon {
+  width: 22px;
+  height: 22px;
+  color: var(--text);
+}
+
+.loyaltyText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.loyaltyLabel {
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.loyaltyValue {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--text);
+}
+
+body.dark .loyaltyValue {
+  color: #ffffff;
+}
+
+.dashboardLoading,
+.dashboardEmpty {
+  max-width: 960px;
+  margin: 0 auto;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.dashboardEmpty {
+  color: #6b7280;
+  font-weight: 700;
+}
+
+body.dark .dashboardEmpty {
+  color: #9ca3af;
+}
+
+.appointmentsList {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.appointmentCard {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+body.dark .appointmentCard {
+  background: #1f1f1f;
+  border-color: #2a2a2a;
+}
+
+@media (min-width: 768px) {
+  .appointmentCard {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+}
+
+.appointmentServiceTitle {
+  margin: 0 0 10px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+body.dark .appointmentServiceTitle {
+  color: #ffffff;
+}
+
+.appointmentServiceIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
+}
+
+.appointmentMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+body.dark .appointmentMeta {
+  color: #9ca3af;
+}
+
+.appointmentMetaRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.appointmentMetaIcon {
+  width: 18px;
+  height: 18px;
+  color: inherit;
+}
+
+.appointmentActions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .appointmentActions {
+    align-items: flex-end;
+  }
+}
+
+.statusBadge {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  letter-spacing: 0.08em;
+}
+
+.statusBadgePending {
+  background: rgba(251, 191, 36, 0.18);
+  color: #b45309;
+}
+
+.statusBadgeConfirmed {
+  background: rgba(34, 197, 94, 0.18);
+  color: #15803d;
+}
+
+.statusBadgeCancelled {
+  background: rgba(239, 68, 68, 0.18);
+  color: #b91c1c;
+}
+
+.statusBadgeNeutral {
+  background: rgba(107, 114, 128, 0.18);
+  color: #4b5563;
+}
+
+.appointmentPrice {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.payButton {
+  border: none;
+  cursor: pointer;
+  background: var(--accent);
+  color: var(--text);
+  font-weight: 900;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.payButton:hover {
+  transform: translateY(-1px);
+  opacity: 0.94;
+}
+
+.cancelButton {
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: #ef4444;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cancelButton:hover {
+  color: #dc2626;
+}
+
+.cancelButtonIcon {
+  width: 18px;
+  height: 18px;
+}
+

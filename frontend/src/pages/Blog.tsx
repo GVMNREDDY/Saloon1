@@ -1,4 +1,4 @@
-import React from 'react';
+import './Blog.scss';
 
 const Blog = () => {
     const articles = [
@@ -26,24 +26,26 @@ const Blog = () => {
     ];
 
     return (
-        <div className="py-16 px-4 bg-gray-50 dark:bg-background-dark min-h-screen">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-4 dark:text-white">Salon Journal</h1>
-            <p className="text-center text-gray-500 mb-16 max-w-2xl mx-auto">Insider tips, style trends, and expert knowledge straight from our master stylists.</p>
+        <div className="blogPage">
+            <h1 className="blogTitle">Salon Journal</h1>
+            <p className="blogSubtitle">
+              Insider tips, style trends, and expert knowledge straight from our master stylists.
+            </p>
             
-            <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+            <div className="blogGrid">
                 {articles.map((article, i) => (
-                    <article key={i} className="bg-white dark:bg-gray-900 rounded-3xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 transition-transform hover:-translate-y-2 group cursor-pointer flex flex-col">
-                        <div className="h-56 overflow-hidden">
-                            <img src={article.image} alt={article.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <article key={i} className="blogCard" style={{ cursor: 'pointer' }}>
+                        <div className="blogImageWrap">
+                            <img src={article.image} alt={article.title} className="blogImage" />
                         </div>
-                        <div className="p-8 flex-1 flex flex-col">
-                            <div className="flex justify-between items-center mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">
-                                <span className="text-accent">{article.category}</span>
-                                <span>{article.date}</span>
+                        <div className="blogBody">
+                            <div className="blogMetaRow">
+                                <span className="blogCategoryTag">{article.category}</span>
+                                <span className="blogDate">{article.date}</span>
                             </div>
-                            <h3 className="text-2xl font-bold dark:text-white mb-3 leading-snug group-hover:text-accent transition-colors">{article.title}</h3>
-                            <p className="text-gray-600 dark:text-gray-400 flex-1">{article.excerpt}</p>
-                            <div className="mt-6 font-bold text-accent group-hover:underline">Read Article →</div>
+                            <h3 className="blogCardTitle">{article.title}</h3>
+                            <p className="blogExcerpt">{article.excerpt}</p>
+                            <div className="blogReadMore">Read Article →</div>
                         </div>
                     </article>
                 ))}

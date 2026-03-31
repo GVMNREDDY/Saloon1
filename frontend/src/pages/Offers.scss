@@ -1,0 +1,237 @@
+.offersPage {
+  padding: 64px 16px 64px 16px;
+  min-height: calc(100vh - 72px);
+  background: #ffffff;
+}
+
+body.dark .offersPage {
+  background: var(--bg-dark);
+}
+
+.offersTitle {
+  margin: 0 0 64px 0;
+  font-size: 44px;
+  font-weight: 900;
+  text-align: center;
+  color: var(--text);
+}
+
+@media (min-width: 768px) {
+  .offersTitle {
+    font-size: 52px;
+  }
+}
+
+body.dark .offersTitle {
+  color: #ffffff;
+}
+
+.offersGrid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .offersGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+.offerCard {
+  padding: 32px;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.offerCard:hover {
+  transform: translateY(-3px);
+}
+
+.offerIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+.offerIconSvg {
+  width: 28px;
+  height: 28px;
+}
+
+.offerTitle {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--text);
+}
+
+body.dark .offerTitle {
+  color: #ffffff;
+}
+
+.offerBody {
+  margin: 0 0 18px 0;
+  color: #6b7280;
+  line-height: 1.7;
+  font-weight: 600;
+}
+
+body.dark .offerBody {
+  color: #d1d5db;
+}
+
+.offerCode {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  font-size: 14px;
+}
+
+.offerButton {
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-weight: 900;
+  color: #ffffff;
+  transition: opacity 160ms ease, transform 160ms ease;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
+}
+
+.offerButton:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.offerCard--festival {
+  background: linear-gradient(135deg, #ffe4f1, #ffd1e8);
+  border-color: rgba(236, 72, 153, 0.25);
+}
+
+.offerCard--festival .offerCode--festival {
+  background: #ffffff;
+  color: #ec4899;
+}
+
+.offerIcon--festival {
+  background: #ec4899;
+  color: #ffffff;
+}
+
+.offerCard--referral {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
+.offerIcon--referral {
+  background: #3b82f6;
+  color: #ffffff;
+}
+
+.offerButton--referral {
+  background: #3b82f6;
+}
+
+.offerCard--gift {
+  background: linear-gradient(135deg, rgba(158, 216, 60, 0.22), rgba(158, 216, 60, 0.08));
+  border-color: rgba(158, 216, 60, 0.35);
+}
+
+.offerIcon--gift {
+  background: var(--accent);
+  color: var(--text);
+}
+
+.offerButton--gift {
+  background: var(--accent);
+  color: var(--text);
+}
+
+.newsletterCard {
+  margin: 80px auto 0 auto;
+  max-width: 900px;
+  background: #111827;
+  border-radius: 18px;
+  padding: 44px 22px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+body.dark .newsletterCard {
+  background: #0b1220;
+}
+
+.newsletterInner {
+  position: relative;
+  z-index: 1;
+}
+
+.newsletterTitle {
+  margin: 0 0 10px 0;
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 30px;
+}
+
+.newsletterSubtitle {
+  margin: 0 auto 28px auto;
+  max-width: 720px;
+  color: rgba(156, 163, 175, 0.95);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.newsletterForm {
+  display: flex;
+  gap: 10px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.newsletterInput {
+  flex: 1;
+  border: 0;
+  outline: none;
+  padding: 14px 16px;
+  border-radius: 9999px;
+  font-size: 16px;
+}
+
+.newsletterButton {
+  border: none;
+  cursor: pointer;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  background: var(--accent);
+  color: var(--text);
+  font-weight: 900;
+  transition: opacity 160ms ease;
+}
+
+.newsletterButton:hover {
+  opacity: 0.92;
+}
+
+@media (max-width: 520px) {
+  .newsletterForm {
+    flex-direction: column;
+  }
+}
+

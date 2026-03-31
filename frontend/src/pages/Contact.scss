@@ -1,0 +1,202 @@
+.contactPage {
+  padding: 64px 16px 64px 16px;
+  min-height: calc(100vh - 72px);
+  background: #ffffff;
+}
+
+body.dark .contactPage {
+  background: var(--bg-dark);
+}
+
+.contactTitle {
+  margin: 0 0 48px 0;
+  font-size: 44px;
+  font-weight: 900;
+  text-align: center;
+  color: var(--text);
+}
+
+@media (min-width: 768px) {
+  .contactTitle {
+    font-size: 52px;
+  }
+}
+
+body.dark .contactTitle {
+  color: #ffffff;
+}
+
+.contactGrid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+@media (min-width: 1024px) {
+  .contactGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.contactBlock {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.contactIconWrapper {
+  background: rgba(158, 216, 60, 0.12);
+  color: var(--accent);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.contactIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.contactBlockText {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contactBlockTitle {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--text);
+}
+
+body.dark .contactBlockTitle {
+  color: #ffffff;
+}
+
+.contactBlockBody {
+  margin: 0;
+  font-size: 16px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+body.dark .contactBlockBody {
+  color: #d1d5db;
+}
+
+.contactMailRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contactMailIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.contactConnect {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 26px;
+}
+
+body.dark .contactConnect {
+  border-top-color: #2f2f2f;
+}
+
+.contactConnectTitle {
+  margin: 0 0 20px 0;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--text);
+}
+
+body.dark .contactConnectTitle {
+  color: #ffffff;
+}
+
+.socialRow {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.socialButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.1);
+  transition: transform 160ms ease, background-color 160ms ease;
+}
+
+.socialButton:hover {
+  transform: translateY(-2px);
+}
+
+.socialIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.socialButton--pink {
+  background: #f3e8ff;
+  color: #ec4899;
+}
+
+.socialButton--pink:hover {
+  background: #ec4899;
+  color: #ffffff;
+}
+
+.socialButton--blue {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.socialButton--blue:hover {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.socialButton--green {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.socialButton--green:hover {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.contactMap {
+  background: #e5e7eb;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.18);
+  min-height: 400px;
+}
+
+body.dark .contactMap {
+  background: #1f1f1f;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+.contactMapIframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+

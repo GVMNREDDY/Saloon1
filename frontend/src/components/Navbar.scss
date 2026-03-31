@@ -1,0 +1,140 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+  background: var(--bg);
+  transition: background-color 200ms ease, border-color 200ms ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  position: relative;
+  z-index: 40;
+}
+
+body.dark .navbar {
+  background: var(--bg-dark);
+  border-bottom-color: #2f2f2f;
+}
+
+.navbarBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  font-size: 28px;
+}
+
+.navbarBrandIcon {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.navbarLinks {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.navbarLink {
+  font-weight: 600;
+  color: #4b5563;
+  transition: color 160ms ease;
+  white-space: nowrap;
+}
+
+body.dark .navbarLink {
+  color: #d1d5db;
+}
+
+.navbarLink:hover {
+  color: var(--accent);
+}
+
+.navbarHideMd {
+  display: none;
+}
+
+.navbarHideLg {
+  display: none;
+}
+
+.navbarHideXl {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .navbarHideMd {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  .navbarHideLg {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 1280px) {
+  .navbarHideXl {
+    display: inline-flex;
+  }
+}
+
+.navbarLangButton {
+  font-size: 12px;
+  font-weight: 800;
+  border: 1px solid #9ca3af;
+  color: #ffffff;
+  background: transparent;
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+/* Keep the text visible in light mode */
+body:not(.dark) .navbarLangButton {
+  color: #212219;
+}
+
+.navbarLangButton:hover {
+  background: #f3f4f6;
+}
+
+body.dark .navbarLangButton:hover {
+  background: #374151;
+}
+
+.navbarLoginButton {
+  background: var(--accent);
+  color: var(--text);
+  padding: 10px 16px;
+  border-radius: 9999px;
+  font-weight: 800;
+  text-align: center;
+  transition: opacity 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+  box-shadow: 0 8px 20px rgba(158, 216, 60, 0.18);
+}
+
+.navbarLoginButton:hover {
+  opacity: 0.92;
+}
+
+.navbarLogoutButton {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-weight: 600;
+  color: #ef4444;
+  cursor: pointer;
+}
+
+.navbarLogoutButton:hover {
+  color: #dc2626;
+}
+

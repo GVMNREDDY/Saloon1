@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { X } from 'lucide-react';
+import './BookingModal.scss';
 
 interface BookingModalProps {
     serviceId: number;
@@ -23,7 +24,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ serviceId, isOpen, onClose 
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.post('http://localhost:8080/api/appointments/book', {
+            const res = await axios.post('/api/appointments/book', {
                 serviceId,
                 date,
                 timeSlot,
@@ -37,47 +38,74 @@ const BookingModal: React.FC<BookingModalProps> = ({ serviceId, isOpen, onClose 
                 setStatusMsg('');
                 onClose();
             }, 3000);
-        } catch (error: any) {
-            setStatusMsg(error.response?.data?.message || "Error booking appointment");
+        } catch (error: unknown) {
+            const message =
+              axios.isAxiosError(error)
+                ? (error.response?.data as { message?: string } | undefined)?.message
+                : undefined;
+            setStatusMsg(message || 'Error booking appointment');
         }
     };
 
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl w-full max-w-lg shadow-2xl relative">
-                <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:hover:text-white">
-                    <X size={24} />
+        <div className="bookingModalOverlay">
+            <div className="bookingModal">
+                <button onClick={onClose} className="bookingModalCloseButton" type="button">
+                    <X size={22} />
                 </button>
-                <h2 className="text-2xl font-bold mb-6 dark:text-white">{t('booking.modalTitle')}</h2>
+                <h2 className="bookingModalTitle">{t('booking.modalTitle')}</h2>
                 
-                {statusMsg && <div className="mb-4 text-center font-bold text-accent">{statusMsg}</div>}
+                {statusMsg && <div className="bookingModalStatus">{statusMsg}</div>}
 
-                <form onSubmit={handleBook} className="space-y-4">
-                    <div>
-                        <label className="block text-sm font-medium mb-1 dark:text-gray-300">{t('booking.preferredDate')}</label>
-                        <input type="date" required className="w-full border rounded-lg p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={date} onChange={e => setDate(e.target.value)} />
+                <form onSubmit={handleBook} className="bookingModalForm">
+                    <div className="bookingModalField">
+                        <label className="bookingModalLabel">{t('booking.preferredDate')}</label>
+                        <input
+                          type="date"
+                          required
+                          className="bookingModalInput"
+                          value={date}
+                          onChange={e => setDate(e.target.value)}
+                        />
                     </div>
                     
-                    <div>
-                        <label className="block text-sm font-medium mb-1 dark:text-gray-300">{t('booking.timeSlot')}</label>
-                        <select required className="w-full border rounded-lg p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value={timeSlot} onChange={e => setTimeSlot(e.target.value)}>
+                    <div className="bookingModalField">
+                        <label className="bookingModalLabel">{t('booking.timeSlot')}</label>
+                        <select
+                          required
+                          className="bookingModalInput"
+                          value={timeSlot}
+                          onChange={e => setTimeSlot(e.target.value)}
+                        >
                             {timeSlots.map(slot => <option key={slot} value={slot}>{slot}</option>)}
                         </select>
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium mb-1 dark:text-gray-300">{t('booking.stylist')}</label>
-                        <input type="text" className="w-full border rounded-lg p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Name (Optional)" value={stylist} onChange={e => setStylist(e.target.value)} />
+                    <div className="bookingModalField">
+                        <label className="bookingModalLabel">{t('booking.stylist')}</label>
+                        <input
+                          type="text"
+                          className="bookingModalInput"
+                          placeholder="Name (Optional)"
+                          value={stylist}
+                          onChange={e => setStylist(e.target.value)}
+                        />
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium mb-1 dark:text-gray-300">{t('booking.coupon')}</label>
-                        <input type="text" className="w-full border rounded-lg p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="WELCOME10" value={coupon} onChange={e => setCoupon(e.target.value)} />
+                    <div className="bookingModalField">
+                        <label className="bookingModalLabel">{t('booking.coupon')}</label>
+                        <input
+                          type="text"
+                          className="bookingModalInput"
+                          placeholder="WELCOME10"
+                          value={coupon}
+                          onChange={e => setCoupon(e.target.value)}
+                        />
                     </div>
 
-                    <button type="submit" className="w-full mt-6 bg-accent text-background-dark font-bold py-3 rounded-lg shadow hover:bg-opacity-90 transition-all">
+                    <button type="submit" className="bookingModalButton">
                         {t('booking.confirm')}
                     </button>
                 </form>

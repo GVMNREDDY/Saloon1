@@ -1,0 +1,208 @@
+.pricingPage {
+  padding: 64px 16px 64px 16px;
+  min-height: calc(100vh - 72px);
+  background: #f9fafb;
+}
+
+body.dark .pricingPage {
+  background: var(--bg-dark);
+}
+
+.pricingTitle {
+  margin: 0 0 18px 0;
+  font-size: 44px;
+  font-weight: 900;
+  text-align: center;
+  color: var(--text);
+}
+
+@media (min-width: 768px) {
+  .pricingTitle {
+    font-size: 52px;
+  }
+}
+
+body.dark .pricingTitle {
+  color: #ffffff;
+}
+
+.pricingDiscountBanner {
+  max-width: 720px;
+  margin: 0 auto 64px auto;
+  padding: 16px 20px;
+  border-radius: 14px;
+  border: 2px solid rgba(158, 216, 60, 0.9);
+  background: rgba(158, 216, 60, 0.08);
+  text-align: center;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+}
+
+.pricingDiscountText {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.pricingDiscountIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.pricingGrid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .pricingGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: center;
+  }
+}
+
+.pricingCard {
+  position: relative;
+  border-radius: 18px;
+  padding: 32px 28px;
+  border: 2px solid transparent;
+  background: #ffffff;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.09);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+body.dark .pricingCard {
+  background: #111111;
+}
+
+.pricingCard:hover {
+  transform: translateY(-2px);
+}
+
+.pricingCard--recommended {
+  border-color: var(--accent);
+}
+
+.pricingCard--standard {
+  border-color: transparent;
+}
+
+body.dark .pricingCard--standard {
+  border-color: #2a2a2a;
+}
+
+.pricingMostPopular {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  background: var(--accent);
+  color: var(--text);
+  padding: 8px 18px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pricingMostPopularIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.pricingCardTitle {
+  margin: 0 0 8px 0;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--text);
+}
+
+body.dark .pricingCardTitle {
+  color: #ffffff;
+}
+
+.pricingCardPrice {
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+
+.pricingFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 26px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pricingFeatureItem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  color: #6b7280;
+  font-weight: 700;
+}
+
+body.dark .pricingFeatureItem {
+  color: #d1d5db;
+}
+
+.pricingFeatureIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+.pricingPlanButton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 9999px;
+  font-weight: 900;
+  text-decoration: none;
+  transition: background-color 160ms ease, opacity 160ms ease, transform 160ms ease;
+}
+
+.pricingPlanButton--primary {
+  background: var(--accent);
+  color: var(--text);
+}
+
+.pricingPlanButton--primary:hover {
+  opacity: 0.92;
+}
+
+.pricingPlanButton--secondary {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+body.dark .pricingPlanButton--secondary {
+  background: #1f1f1f;
+  color: #ffffff;
+}
+
+.pricingPlanButton--secondary:hover {
+  background: #e5e7eb;
+}
+
+body.dark .pricingPlanButton--secondary:hover {
+  background: #2a2a2a;
+}
+

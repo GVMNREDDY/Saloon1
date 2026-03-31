@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './Login.scss';
 
 const Login = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -9,47 +10,58 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:8080/api/auth/login', formData);
+      const res = await axios.post('/api/auth/login', formData);
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data));
       window.location.href = '/';
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Login failed');
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        const message =
+          (err.response?.data as { message?: string } | undefined)?.message;
+        setError(message || 'Login failed');
+        return;
+      }
+      setError('Login failed');
     }
   };
 
   return (
-    <div className="max-w-md mx-auto mt-16 bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800">
-      <h2 className="dark:text-white text-3xl font-bold text-center mb-8">Welcome Back</h2>
-      {error && <div className="bg-red-500/10 text-red-500 p-3 rounded-lg mb-4 text-sm">{error}</div>}
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="dark:text-white block text-sm font-medium mb-1 dark:text-gray-300">Username</label>
+    <div className="authPage">
+      <div className="authCard">
+        <h2 className="authTitle">Welcome Back</h2>
+        {error && <div className="authError">{error}</div>}
+        <form onSubmit={handleSubmit} className="authForm">
+          <div className="authField">
+            <label className="authLabel">Username</label>
           <input
             type="text"
-            className="dark:text-white w-full p-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-transparent focus:border-accent focus:bg-white dark:focus:bg-gray-900 focus:ring-1 focus:ring-accent outline-none transition-all"
+            className="authInput"
             value={formData.username}
             onChange={e => setFormData({ ...formData, username: e.target.value })}
             required
           />
         </div>
-        <div>
-          <label className="dark:text-white block text-sm font-medium mb-1 dark:text-gray-300">Password</label>
+        <div className="authField">
+          <label className="authLabel">Password</label>
           <input
             type="password"
-            className="dark:text-white w-full p-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-transparent focus:border-accent focus:bg-white dark:focus:bg-gray-900 focus:ring-1 focus:ring-accent outline-none transition-all"
+            className="authInput"
             value={formData.password}
             onChange={e => setFormData({ ...formData, password: e.target.value })}
             required
           />
         </div>
-        <button className="w-full bg-accent text-background-dark font-bold py-3 rounded-lg hover:bg-opacity-90 transition-all mt-4">
+        <button className="authButton" type="submit">
           Sign In
         </button>
+        <p className="authFooter">
+          Don't have an account?{' '}
+          <Link to="/register" className="authLink">
+            Sign up
+          </Link>
+        </p>
       </form>
-      <p className="mt-6 text-center text-sm dark:text-gray-400">
-        Don't have an account? <Link to="/register" className="text-accent hover:underline">Sign up</Link>
-      </p>
+    </div>
     </div>
   );
 };

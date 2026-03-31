@@ -1,0 +1,31 @@
+:root {
+  --bg: #ffffff;
+  --bg-dark: #212219;
+  --text: #212219;
+  --text-dark: #ffffff;
+  --text-dark-muted: #cccccc;
+  --accent: #9ed83c;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+

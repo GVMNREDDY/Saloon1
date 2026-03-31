@@ -1,4 +1,4 @@
-import React from 'react';
+import './Gallery.scss';
 
 const Gallery = () => {
     const images = [
@@ -11,20 +11,22 @@ const Gallery = () => {
     ];
 
     return (
-        <div className="py-16 px-4 bg-gray-50 dark:bg-background-dark min-h-screen">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-4 dark:text-white">Our Gallery</h1>
-            <p className="text-center text-gray-500 mb-12 max-w-2xl mx-auto">Explore the stunning transformations and the luxurious ambiance of our salon.</p>
+        <div className="galleryPage">
+            <h1 className="galleryTitle">Our Gallery</h1>
+            <p className="gallerySubtitle">
+              Explore the stunning transformations and the luxurious ambiance of our salon.
+            </p>
             
-            <div className="max-w-7xl mx-auto columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+            <div className="galleryMasonry">
                 {images.map((img, i) => (
-                    <div key={i} className="break-inside-avoid rounded-2xl overflow-hidden shadow-lg group relative">
+                    <div key={i} className="galleryItem">
                         <img 
                             src={img.src} 
                             alt={img.title} 
-                            className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-110" 
+                            className="galleryImage"
                         />
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <h3 className="text-white font-bold text-xl">{img.title}</h3>
+                        <div className="galleryOverlay">
+                            <h3 className="galleryOverlayTitle">{img.title}</h3>
                         </div>
                     </div>
                 ))}

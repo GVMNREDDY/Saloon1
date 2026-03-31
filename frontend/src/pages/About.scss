@@ -1,0 +1,201 @@
+.aboutPage {
+  padding: 64px 16px;
+  min-height: calc(100vh - 72px);
+  background: #ffffff;
+}
+
+body.dark .aboutPage {
+  background: var(--bg-dark);
+}
+
+.aboutContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.aboutStoryGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 96px;
+}
+
+@media (min-width: 768px) {
+  .aboutStoryGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.aboutStoryText {
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutStoryTitle {
+  margin: 0 0 18px 0;
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--text);
+}
+
+body.dark .aboutStoryTitle {
+  color: #ffffff;
+}
+
+.aboutStoryLead {
+  margin: 0 0 22px 0;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #6b7280;
+}
+
+body.dark .aboutStoryLead {
+  color: #9ca3af;
+}
+
+.aboutHighlights {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.aboutHighlightItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #374151;
+  font-weight: 700;
+}
+
+body.dark .aboutHighlightItem {
+  color: #e5e7eb;
+}
+
+.aboutHighlightIcon {
+  width: 22px;
+  height: 22px;
+  color: var(--accent);
+}
+
+.aboutStoryImageWrap {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+
+.aboutStoryImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aboutTeamTitle {
+  text-align: center;
+  font-size: 44px;
+  font-weight: 900;
+  margin: 0 0 48px 0;
+  color: var(--text);
+}
+
+body.dark .aboutTeamTitle {
+  color: #ffffff;
+}
+
+.aboutTeamGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .aboutTeamGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.aboutExpertCard {
+  border-radius: 18px;
+  overflow: hidden;
+  background: #f9fafb;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+body.dark .aboutExpertCard {
+  background: #111111;
+}
+
+.aboutExpertImageWrap {
+  position: relative;
+  height: 256px;
+  overflow: hidden;
+}
+
+.aboutExpertImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 400ms ease;
+}
+
+.aboutExpertCard:hover .aboutExpertImage {
+  transform: scale(1.05);
+}
+
+.aboutExpertOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 24px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+
+.aboutExpertName {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.aboutExpertRole {
+  margin: 6px 0 0 0;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.aboutExpertBio {
+  padding: 22px 24px;
+}
+
+.aboutExpertBio p {
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.8;
+}
+
+body.dark .aboutExpertBio p {
+  color: #9ca3af;
+}
+
+@media (max-width: 480px) {
+  .aboutStoryGrid {
+    gap: 28px;
+    margin-bottom: 56px;
+  }
+
+  .aboutStoryTitle,
+  .aboutTeamTitle {
+    font-size: 32px;
+  }
+
+  .aboutExpertImageWrap {
+    height: 220px;
+  }
+}
+

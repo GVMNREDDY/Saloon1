@@ -1,0 +1,212 @@
+.appRoot {
+  min-height: 100vh;
+}
+
+.appMain {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+.suspenseFallback {
+  text-align: center;
+  font-weight: 800;
+  font-size: 20px;
+  padding: 80px 0;
+  color: var(--accent);
+}
+
+.homeHero {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px 16px;
+}
+
+.homeHeroTitle {
+  margin: 0 0 18px 0;
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+.homeHeroText {
+  margin: 0;
+  font-size: 18px;
+  max-width: 720px;
+  color: var(--text);
+  opacity: 0.85;
+}
+
+body.dark .homeHeroText {
+  color: #cccccc;
+}
+
+.homeHeroActions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.homeHeroPrimaryButton,
+.homeHeroSecondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 32px;
+  border-radius: 9999px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: opacity 160ms ease, transform 160ms ease, background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.homeHeroPrimaryButton {
+  background: var(--accent);
+  color: var(--text);
+  box-shadow: 0 12px 26px rgba(158, 216, 60, 0.22);
+}
+
+.homeHeroPrimaryButton:hover {
+  opacity: 0.92;
+}
+
+.homeHeroSecondaryButton {
+  border: 2px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+}
+
+.homeHeroSecondaryButton:hover {
+  background: var(--accent);
+  color: var(--text);
+}
+
+.reviewsSection {
+  padding: 80px 16px 40px 16px;
+}
+
+.reviewsTitle {
+  margin: 0 0 48px 0;
+  font-size: 36px;
+  font-weight: 900;
+  text-align: center;
+}
+
+body.dark .reviewsTitle {
+  color: #ffffff;
+}
+
+.reviewsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .reviewsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.reviewCard {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+body.dark .reviewCard {
+  background: #111111;
+  border-color: #2a2a2a;
+}
+
+.reviewCard:hover {
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.reviewAvatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 9999px;
+  object-fit: cover;
+  margin-bottom: 14px;
+}
+
+.reviewStars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 16px;
+}
+
+.reviewStarIcon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  color: #f59e0b;
+}
+
+.reviewText {
+  margin: 0 0 18px 0;
+  color: #6b7280;
+  font-style: italic;
+}
+
+body.dark .reviewText {
+  color: #d1d5db;
+}
+
+.reviewName {
+  margin: 0;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--text);
+}
+
+body.dark .reviewName {
+  color: #ffffff;
+}
+
+.whatsAppButton {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 56px;
+  height: 56px;
+  background: #22c55e;
+  color: #ffffff;
+  border-radius: 9999px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 160ms ease, background-color 160ms ease;
+  z-index: 50;
+}
+
+.whatsAppButton:hover {
+  transform: translateY(-2px);
+  background: #16a34a;
+}
+
+.whatsAppIcon {
+  width: 26px;
+  height: 26px;
+}
+

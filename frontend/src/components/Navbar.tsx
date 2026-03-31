@@ -1,9 +1,9 @@
-import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import './Navbar.scss';
 
 const Navbar = () => {
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
 
@@ -17,49 +17,49 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="p-4 bg-background dark:bg-background-dark border-b border-gray-200 dark:border-gray-800 flex justify-between items-center transition-colors shadow-sm relative z-40">
-            <Link to="/" className="text-2xl font-bold tracking-tight text-accent flex items-center gap-2">
-                <span className="text-3xl">✨</span> Saloon
+        <nav className="navbar">
+            <Link to="/" className="navbarBrand">
+                <span className="navbarBrandIcon">✨</span> Saloon
             </Link>
 
-            <div className="flex gap-4 md:gap-5 items-center flex-wrap justify-end">
-                <Link to="/services" className="font-semibold text-gray-700 dark:text-gray-300 hover:text-accent transition-colors">
+            <div className="navbarLinks">
+                <Link to="/services" className="navbarLink">
                     {'Services'}
                 </Link>
-                <Link to="/about" className="font-semibold text-gray-700 dark:text-gray-300 hover:text-accent transition-colors hidden lg:block">
+                <Link to="/about" className="navbarLink navbarHideLg">
                     {'About Us'}
                 </Link>
-                <Link to="/gallery" className="font-semibold text-gray-700 dark:text-gray-300 hover:text-accent transition-colors hidden lg:block">
+                <Link to="/gallery" className="navbarLink navbarHideLg">
                     {'Gallery'}
                 </Link>
-                <Link to="/offers" className="font-semibold text-gray-700 dark:text-gray-300 hover:text-accent transition-colors hidden xl:block">
+                <Link to="/offers" className="navbarLink navbarHideXl">
                     Offers
                 </Link>
-                <Link to="/blog" className="font-semibold text-gray-700 dark:text-gray-300 hover:text-accent transition-colors hidden xl:block">
+                <Link to="/blog" className="navbarLink navbarHideXl">
                     Blog
                 </Link>
-                <Link to="/pricing" className="font-semibold text-gray-700 dark:text-gray-300 hover:text-accent transition-colors hidden md:block">
+                <Link to="/pricing" className="navbarLink navbarHideMd">
                     Pricing
                 </Link>
-                <Link to="/contact" className="font-semibold text-gray-700 dark:text-gray-300 hover:text-accent transition-colors hidden md:block">
+                <Link to="/contact" className="navbarLink navbarHideMd">
                     Contact Us
                 </Link>
 
-                <button onClick={toggleLang} className="text-xs font-bold border border-gray-400 px-2 py-1 rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors hidden md:block">
+                <button onClick={toggleLang} className="navbarLangButton navbarHideMd">
                     {i18n.language === 'en' ? 'తెలుగు' : 'English'}
                 </button>
 
                 {token ? (
                     <>
-                        <Link to="/dashboard" className="font-semibold text-gray-700 dark:text-gray-300 hover:text-accent transition-colors">
+                        <Link to="/dashboard" className="navbarLink">
                             {'Dashboard'}
                         </Link>
-                        <button onClick={handleLogout} className="font-semibold text-red-500 hover:text-red-600 transition-colors">
+                        <button onClick={handleLogout} className="navbarLogoutButton" type="button">
                             {'Logout'}
                         </button>
                     </>
                 ) : (
-                    <Link to="/login" className="bg-accent text-background-dark px-4 py-2 md:px-5 rounded-full font-bold hover:bg-opacity-90 shadow-sm transition-all shadow-accent/20">
+                    <Link to="/login" className="navbarLoginButton">
                         {'Login'}
                     </Link>
                 )}

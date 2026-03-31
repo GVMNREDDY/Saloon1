@@ -1,0 +1,136 @@
+.bookingModalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 16px;
+}
+
+.bookingModal {
+  width: 100%;
+  max-width: 520px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.25);
+  color: var(--text);
+}
+
+body.dark .bookingModal {
+  background: #2a2a2a;
+  color: #ffffff;
+}
+
+.bookingModalCloseButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+body.dark .bookingModalCloseButton {
+  color: #d1d5db;
+}
+
+.bookingModalCloseButton:hover {
+  color: #111827;
+}
+
+body.dark .bookingModalCloseButton:hover {
+  color: #ffffff;
+}
+
+.bookingModalTitle {
+  margin: 0 0 18px 0;
+  font-size: 24px;
+  font-weight: 900;
+  text-align: left;
+}
+
+body.dark .bookingModalTitle {
+  color: #ffffff;
+}
+
+.bookingModalStatus {
+  text-align: center;
+  font-weight: 900;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.bookingModalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bookingModalField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bookingModalLabel {
+  font-weight: 800;
+  font-size: 13px;
+  color: #374151;
+}
+
+body.dark .bookingModalLabel {
+  color: #e5e7eb;
+}
+
+.bookingModalInput {
+  width: 100%;
+  padding: 12px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #f3f4f6;
+  color: #111827;
+  outline: none;
+}
+
+.bookingModalInput:focus {
+  border-color: var(--accent);
+}
+
+body.dark .bookingModalInput {
+  background: #333333;
+  border-color: #444444;
+  color: #ffffff;
+}
+
+body.dark .bookingModalInput:focus {
+  border-color: var(--accent);
+}
+
+.bookingModalButton {
+  width: 100%;
+  margin-top: 6px;
+  border: none;
+  background: var(--accent);
+  color: var(--text);
+  font-weight: 900;
+  padding: 14px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.bookingModalButton:hover {
+  opacity: 0.92;
+}
+
+@media (max-width: 480px) {
+  .bookingModal {
+    padding: 22px;
+  }
+}
+
