@@ -19,6 +19,7 @@ body.dark .serviceCard {
 
 .serviceCardImageArea {
   position: relative;
+  z-index: 1;
   height: 192px;
   background: #e5e7eb;
 }
@@ -67,6 +68,22 @@ body.dark .serviceCardImageArea {
 
 .serviceCardBody {
   padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.serviceCardBody:hover {
+  height: 370px;
+  width: 100%;
+  transform: translateY(-100px);
+  background-color: #111111d9;
+  position: absolute;
+  z-index: 2;
+  padding: 24px;
+
+  &.serviceCardDescription {
+  height: 40%;
+  overflow-y: auto;
+  }
 }
 
 .serviceCardTopRow {
@@ -96,12 +113,34 @@ body.dark .serviceCardTitle {
 .serviceCardDescription {
   margin: 0 0 18px 0;
   color: #6b7280;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.6;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.65) transparent;
 }
 
 body.dark .serviceCardDescription {
   color: #d1d5db;
+  height: 20px;
+  overflow: hidden;
+  scrollbar-color: rgba(148, 163, 184, 0.55) transparent;
+}
+
+.serviceCardDescription::-webkit-scrollbar {
+  width: 2px;
+}
+
+.serviceCardDescription::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.serviceCardDescription::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.6);
+  border-radius: 9999px;
+}
+
+.serviceCardDescription::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.85);
 }
 
 .serviceCardFooter {
@@ -143,6 +182,9 @@ body.dark .serviceCardDuration {
 body.dark .serviceCardButton {
   background: #e5e7eb;
   color: #111111;
+  &:hover {
+    color: #c8a96b;
+  }
 }
 
 .serviceCardButton:hover {

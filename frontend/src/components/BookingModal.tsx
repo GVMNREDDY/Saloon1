@@ -61,13 +61,13 @@ const BookingModal: React.FC<BookingModalProps> = ({ serviceId, isOpen, onClose 
                 <button onClick={onClose} className="bookingModalCloseButton" type="button">
                     <X size={22} />
                 </button>
-                <h2 className="bookingModalTitle">{t('booking.modalTitle')}</h2>
+                <h2 className="bookingModalTitle">{'Book Appointment'}</h2>
                 
                 {statusMsg && <div className="bookingModalStatus">{statusMsg}</div>}
 
                 <form onSubmit={handleBook} className="bookingModalForm">
                     <div className="bookingModalField">
-                        <label className="bookingModalLabel">{t('booking.preferredDate')}</label>
+                        <label className="bookingModalLabel">{'Preferred Date'}</label>
                         <input
                           type="date"
                           required
@@ -78,7 +78,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ serviceId, isOpen, onClose 
                     </div>
                     
                     <div className="bookingModalField">
-                        <label className="bookingModalLabel">{t('booking.timeSlot')}</label>
+                        <label className="bookingModalLabel">{'Time Slot'}</label>
                         <select
                           required
                           className="bookingModalInput"
@@ -90,7 +90,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ serviceId, isOpen, onClose 
                     </div>
 
                     <div className="bookingModalField">
-                        <label className="bookingModalLabel">{t('booking.stylist')}</label>
+                        <label className="bookingModalLabel">{'Preferred Stylist (Optional)'}</label>
                         <input
                           type="text"
                           className="bookingModalInput"
@@ -101,7 +101,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ serviceId, isOpen, onClose 
                     </div>
 
                     <div className="bookingModalField">
-                        <label className="bookingModalLabel">{t('booking.coupon')}</label>
+                        <label className="bookingModalLabel">{'Coupon Code (Optional)'}</label>
                         <input
                           type="text"
                           className="bookingModalInput"
@@ -112,7 +112,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ serviceId, isOpen, onClose 
                     </div>
 
                     <button type="submit" className="bookingModalButton">
-                        {t('booking.confirm')}
+                        {'Confirm Booking'}
                     </button>
                 </form>
             </div>

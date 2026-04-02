@@ -50,26 +50,26 @@ const Navbar = () => {
                 <Link to="/services" className="navbarLink" onClick={closeMenu}>
                     {'Services'}
                 </Link>
-                <Link to="/about" className="navbarLink navbarHideLg" onClick={closeMenu}>
+                <Link to="/about" className="navbarLink" onClick={closeMenu}>
                     {'About Us'}
                 </Link>
-                <Link to="/gallery" className="navbarLink navbarHideLg" onClick={closeMenu}>
+                <Link to="/gallery" className="navbarLink" onClick={closeMenu}>
                     {'Gallery'}
                 </Link>
-                <Link to="/offers" className="navbarLink navbarHideXl" onClick={closeMenu}>
+                <Link to="/offers" className="navbarLink" onClick={closeMenu}>
                     Offers
                 </Link>
-                <Link to="/blog" className="navbarLink navbarHideXl" onClick={closeMenu}>
+                <Link to="/blog" className="navbarLink" onClick={closeMenu}>
                     Blog
                 </Link>
-                <Link to="/pricing" className="navbarLink navbarHideMd" onClick={closeMenu}>
+                <Link to="/pricing" className="navbarLink" onClick={closeMenu}>
                     Pricing
                 </Link>
-                <Link to="/contact" className="navbarLink navbarHideMd" onClick={closeMenu}>
+                <Link to="/contact" className="navbarLink" onClick={closeMenu}>
                     Contact Us
                 </Link>
 
-                <button onClick={toggleLang} className="navbarLangButton navbarHideMd" type="button">
+                <button onClick={toggleLang} className="navbarLangButton" type="button">
                     {i18n.language === 'en' ? 'తెలుగు' : 'English'}
                 </button>
 

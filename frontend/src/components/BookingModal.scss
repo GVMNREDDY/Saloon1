@@ -3,21 +3,51 @@
   inset: 0;
   z-index: 1000;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
   padding: 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.55) transparent;
 }
 
 .bookingModal {
   width: 100%;
   max-width: 520px;
+  max-height: calc(100dvh - 32px);
   background: #ffffff;
   border-radius: 16px;
   padding: 32px;
   position: relative;
   box-shadow: 0 26px 70px rgba(0, 0, 0, 0.25);
   color: var(--text);
+  overflow-y: auto;
+  margin: auto 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.55) transparent;
+}
+
+.bookingModalOverlay::-webkit-scrollbar,
+.bookingModal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.bookingModalOverlay::-webkit-scrollbar-track,
+.bookingModal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.bookingModalOverlay::-webkit-scrollbar-thumb,
+.bookingModal::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.58);
+  border-radius: 9999px;
+}
+
+.bookingModalOverlay::-webkit-scrollbar-thumb:hover,
+.bookingModal::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.82);
 }
 
 body.dark .bookingModal {
@@ -101,10 +131,39 @@ body.dark .bookingModalLabel {
   border-color: var(--accent);
 }
 
+.bookingModalInput[type='date'] {
+  padding-right: 42px;
+  font-weight: 700;
+  color-scheme: light;
+  cursor: pointer;
+}
+
+.bookingModalInput[type='date']::-webkit-calendar-picker-indicator {
+  opacity: 0.85;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 6px;
+  transition: transform 160ms ease, opacity 160ms ease, background-color 160ms ease;
+}
+
+.bookingModalInput[type='date']::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  transform: scale(1.08);
+  background: rgba(200, 169, 107, 0.2);
+}
+
 body.dark .bookingModalInput {
   background: #333333;
   border-color: #444444;
   color: #ffffff;
+}
+
+body.dark .bookingModalInput[type='date'] {
+  color-scheme: dark;
+}
+
+body.dark .bookingModalInput[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(1.1);
 }
 
 body.dark .bookingModalInput:focus {
@@ -129,8 +188,13 @@ body.dark .bookingModalInput:focus {
 }
 
 @media (max-width: 480px) {
+  .bookingModalOverlay {
+    padding: 12px;
+  }
+
   .bookingModal {
     padding: 22px;
+    max-height: calc(100dvh - 24px);
   }
 }
 

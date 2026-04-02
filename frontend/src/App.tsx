@@ -30,7 +30,37 @@ const Home = () => {
 
     revealItems.forEach((item) => observer.observe(item));
 
-    return () => observer.disconnect();
+    const parallaxItems = Array.from(document.querySelectorAll<HTMLElement>('[data-parallax]'));
+    let raf = 0;
+
+    const updateParallax = () => {
+      raf = 0;
+      const viewportMid = window.scrollY + window.innerHeight * 0.55;
+      parallaxItems.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const elMid = rect.top + window.scrollY + rect.height * 0.5;
+        const delta = viewportMid - elMid;
+        const strength = Number(el.dataset.parallax ?? '0.06');
+        const y = Math.max(-36, Math.min(36, delta * strength));
+        el.style.transform = `translate3d(0, ${y}px, 0)`;
+      });
+    };
+
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(updateParallax);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    updateParallax();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (raf) window.cancelAnimationFrame(raf);
+    };
   }, []);
 
   const reviews = [
@@ -59,6 +89,29 @@ const Home = () => {
     { value: '4.9', label: 'Average customer rating' }
   ];
 
+  const showcase = [
+    {
+      title: 'Precision Haircuts',
+      text: 'Tailored shapes with clean lines and soft movement.',
+      img: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=1600'
+    },
+    {
+      title: 'Glow Facials',
+      text: 'Deep cleanse, hydration, and a calm reset for your skin.',
+      img: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=1600'
+    },
+    {
+      title: 'Bridal Makeup',
+      text: 'Long-wear artistry with luminous, photo-ready finish.',
+      img: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=1600'
+    },
+    {
+      title: 'Spa Massage',
+      text: 'Release tension and restore balance with expert therapy.',
+      img: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=1600'
+    }
+  ];
+
   return (
     <>
       <section className="homeHero revealItem" data-reveal>
@@ -79,6 +132,34 @@ const Home = () => {
         </div>
       </section>
 
+      <section className="signatureSection revealItem" data-reveal>
+        <div className="signatureGrid">
+          <div className="signatureCopy">
+            <span className="softKicker">Signature experiences</span>
+            <h2>Premium care in a calm, luxury space</h2>
+            <p>
+              From consultation to finishing touches, every detail is curated: hygiene-first tools, gentle products,
+              and an elegant atmosphere that feels like a reset.
+            </p>
+            <div className="signatureActions">
+              <Link to="/services" className="homeHeroPrimaryButton">Explore Services</Link>
+              <Link to="/contact" className="homeHeroSecondaryButton">Talk to Us</Link>
+            </div>
+          </div>
+
+          <div className="signatureMedia smokeFrame" aria-hidden="true">
+            <div className="smokeFrameInner">
+              <img
+                data-parallax="0.07"
+                className="signatureImage parallaxLayer"
+                src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&q=80&w=1800"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="statsSection revealItem" data-reveal>
         <div className="statsGrid">
           {highlights.map((item) => (
@@ -86,6 +167,31 @@ const Home = () => {
               <h3>{item.value}</h3>
               <p>{item.label}</p>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="lookbookSection revealItem" data-reveal>
+        <div className="sectionHeading">
+          <h2>Lookbook</h2>
+          <p>Large-scale visuals with smooth motion and elegant finishing.</p>
+        </div>
+        <div className="lookbookRail">
+          {showcase.map((item) => (
+            <article key={item.title} className="lookbookCard smokeFrame">
+              <div className="smokeFrameInner">
+                <img
+                  className="lookbookImage"
+                  data-parallax="0.05"
+                  src={item.img}
+                  alt={item.title}
+                />
+              </div>
+              <div className="lookbookMeta">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </article>
           ))}
         </div>
       </section>
@@ -121,6 +227,21 @@ const Home = () => {
               </Link>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="ctaBand revealItem" data-reveal>
+        <div className="ctaBandInner">
+          <div>
+            <h2>Ready for your glow-up?</h2>
+            <p>Book a slot in seconds and let our team take care of the rest.</p>
+          </div>
+          <div className="ctaBandActions">
+            <Link to="/services" className="homeHeroPrimaryButton">Book Appointment</Link>
+            {!localStorage.getItem('token') && (
+              <Link to="/register" className="homeHeroSecondaryButton">Create Account</Link>
+            )}
+          </div>
         </div>
       </section>
 
@@ -175,42 +296,91 @@ const Home = () => {
   );
 };
 
-const Footer = () => (
-  <footer className="siteFooter">
-    <div className="siteFooterGrid">
-      <div>
-        <h3>Saloon</h3>
-        <p>
-          Premium salon and spa services with modern care rituals for hair, skin, and wellness.
+const Footer = () => {
+  const year = new Date().getFullYear();
+  const token = localStorage.getItem('token');
+
+  return (
+    <footer className="siteFooter">
+      <div className="siteFooterTop">
+        <div className="siteFooterGrid">
+          <div className="footerBrand">
+            <h3>Saloon</h3>
+            <p>
+              Premium salon and spa services with modern care rituals for hair, skin, and wellness.
+            </p>
+            <div className="footerContactMini">
+              <a className="footerLink" href="mailto:support@saloon.com">support@saloon.com</a>
+              <a className="footerLink" href="tel:+15551234567">+1 (555) 123-4567</a>
+            </div>
+          </div>
+
+          <div className="footerColumn">
+            <h4>Navigation</h4>
+            <div className="footerLinks">
+              <Link className="footerLink" to="/">Home</Link>
+              <Link className="footerLink" to="/services">Services</Link>
+              <Link className="footerLink" to="/about">About</Link>
+              <Link className="footerLink" to="/gallery">Gallery</Link>
+              <Link className="footerLink" to="/pricing">Pricing</Link>
+              <Link className="footerLink" to="/offers">Offers</Link>
+              <Link className="footerLink" to="/blog">Blog</Link>
+              <Link className="footerLink" to="/contact">Contact</Link>
+              {token ? (
+                <Link className="footerLink" to="/dashboard">Dashboard</Link>
+              ) : (
+                <>
+                  <Link className="footerLink" to="/login">Login</Link>
+                  <Link className="footerLink" to="/register">Register</Link>
+                </>
+              )}
+            </div>
+          </div>
+
+          <div className="footerColumn">
+            <h4>Contact Details</h4>
+            <p className="footerTextStrong">Visit us</p>
+            <p className="footerText">
+              123 Salon Street, Downtown<br />
+              City, State 00000
+            </p>
+            <p className="footerTextStrong">Working hours</p>
+            <p className="footerText">Mon-Sat: 9:00 AM - 8:00 PM</p>
+            <p className="footerText">Sun: 10:00 AM - 6:00 PM</p>
+          </div>
+
+          <div className="footerColumn">
+            <h4>Location</h4>
+            <div className="footerMapWrap smokeFrame">
+              <div className="smokeFrameInner footerMapInner">
+                <iframe
+                  className="footerMap"
+                  title="Salon location map"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps?q=salon%20near%20me&output=embed"
+                />
+              </div>
+            </div>
+
+            <h4 className="footerFollowTitle">Follow Us</h4>
+            <div className="footerLinks footerLinksRow">
+              <a className="footerLink" href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+              <a className="footerLink" href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a>
+              <a className="footerLink" href="https://youtube.com" target="_blank" rel="noreferrer">YouTube</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="siteFooterBottom">
+        <p className="footerBottom">
+          © {year} Saloon. All rights reserved.
         </p>
       </div>
-      <div>
-        <h4>Quick Links</h4>
-        <div className="footerLinks">
-          <Link to="/">Home</Link>
-          <Link to="/services">Services</Link>
-          <Link to="/offers">Offers</Link>
-          <Link to="/blog">Blog</Link>
-        </div>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <p>support@saloon.com</p>
-        <p>+1 (555) 123-4567</p>
-        <p>Mon-Sat: 9:00 AM - 8:00 PM</p>
-      </div>
-      <div>
-        <h4>Follow Us</h4>
-        <div className="footerLinks">
-          <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
-          <a href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a>
-          <a href="https://youtube.com" target="_blank" rel="noreferrer">YouTube</a>
-        </div>
-      </div>
-    </div>
-    <p className="footerBottom">Copyright {new Date().getFullYear()} Saloon. All rights reserved.</p>
-  </footer>
-);
+    </footer>
+  );
+};
 
 function App() {
   const [darkMode] = useState(true);
